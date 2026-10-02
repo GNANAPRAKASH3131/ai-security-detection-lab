@@ -1,0 +1,50 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Network definition: 10.10.10.0/24
+
+  # 1. Domain Controller (DC01)
+  config.vm.define "dc01" do |dc|
+    dc.vm.box = "gusztavvargadr/windows-server-2022-standard"
+    dc.vm.hostname = "dc01"
+    dc.vm.network "private_network", ip: "10.10.10.10"
+    dc.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+    end
+  end
+
+  # 2. Windows Client (WIN-LAB01)
+  config.vm.define "win-lab01" do |win|
+    win.vm.box = "gusztavvargadr/windows-11-enterprise"
+    win.vm.hostname = "win-lab01"
+    win.vm.network "private_network", ip: "10.10.10.20"
+    win.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+    end
+  end
+
+  # 3. Linux Server (SRV-LNX01)
+  config.vm.define "srv-lnx01" do |lnx|
+    lnx.vm.box = "ubuntu/jammy64"
+    lnx.vm.hostname = "srv-lnx01"
+    lnx.vm.network "private_network", ip: "10.10.10.30"
+    lnx.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 1
+    end
+  end
+
+  # 4. Kali / Test Runner (KALI-ATTACK01)
+  config.vm.define "kali-attack01" do |kali|
+    kali.vm.box = "kalilinux/rolling"
+    kali.vm.hostname = "kali-attack01"
+    kali.vm.network "private_network", ip: "10.10.10.50"
+    kali.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 2
+    end
+  end
+end

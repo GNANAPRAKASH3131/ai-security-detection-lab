@@ -1,0 +1,127 @@
+{
+  "experiment_id": "EXP-SCENARIO-02-20261002121837",
+  "scenario": "Experiment 2 - Authentication Anomaly",
+  "start_time": "2026-10-02T12:18:37.818684",
+  "end_time": "2026-10-02T12:18:37.819033",
+  "hosts": [
+    "DC01",
+    "WIN-LAB01"
+  ],
+  "users": [
+    "user01"
+  ],
+  "events_generated": 10,
+  "events_received": 10,
+  "events_detected": 1,
+  "events_missed": 0,
+  "alerts": [
+    {
+      "alert_id": "ALT-12E71928",
+      "timestamp": "2026-10-02T12:18:37.819033",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-AUTH-002: Multiple Failed Authentication Attempts (Brute Force/Spray)",
+      "severity": "HIGH",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "anomaly_score": 0.5,
+      "contributing_features": {},
+      "description": "Host WIN-LAB01 reported 5 consecutive failed authentication attempts for user 'user01'.",
+      "evidence_events": [
+        "d20ab357-73aa-4018-98d0-d494fa00cf0f"
+      ],
+      "response_triggered": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG"
+    }
+  ],
+  "anomaly_scores": [
+    {
+      "score": 0.5,
+      "rule": "SIG-AUTH-002: Multiple Failed Authentication Attempts (Brute Force/Spray)"
+    }
+  ],
+  "telemetry_gaps": [],
+  "response_actions": [
+    {
+      "action_id": "RSP-5A2EBEAC",
+      "timestamp": "2026-10-02T12:18:37.819033",
+      "alert_id": "ALT-12E71928",
+      "target_host": "WIN-LAB01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] User 'user01' flagged for behavioral review; Generated SOC Ticket for host 'WIN-LAB01'.",
+      "remediation_notes": "Review authentication logs in SIEM; check for concurrent interactive sessions."
+    }
+  ],
+  "attack_chain": [
+    {
+      "stage_id": "initial_access",
+      "name": "Initial Internal Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.1
+    },
+    {
+      "stage_id": "discovery",
+      "name": "Discovery & Recon",
+      "status": "NO_TELEMETRY",
+      "score": 0.5
+    },
+    {
+      "stage_id": "authentication",
+      "name": "Authentication Activity",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.5
+    },
+    {
+      "stage_id": "lateral_movement",
+      "name": "Lateral Movement",
+      "status": "NO_TELEMETRY",
+      "score": 0.5
+    },
+    {
+      "stage_id": "privilege_escalation",
+      "name": "Privilege Activity",
+      "status": "NO_TELEMETRY",
+      "score": 0.5
+    },
+    {
+      "stage_id": "sensitive_access",
+      "name": "Sensitive Resource Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.5
+    },
+    {
+      "stage_id": "detection",
+      "name": "Detection Engine",
+      "status": "DETECTED_AI",
+      "score": 0.5
+    },
+    {
+      "stage_id": "response",
+      "name": "Automated Response",
+      "status": "NO_TELEMETRY",
+      "score": 0.5
+    }
+  ],
+  "metrics": {
+    "events_generated": 10,
+    "events_collected": 10,
+    "events_analyzed": 10,
+    "traditional_detection": "YES",
+    "behavior_anomaly": "NO",
+    "alert": "YES",
+    "detection_delay": "3.2 sec",
+    "anomaly_score": 0.5,
+    "telemetry_coverage_pct": 100.0,
+    "detection_triggered": true,
+    "max_anomaly_score": 0.5,
+    "expected_detection": "SIG-AUTH-002 (Failed Logins) + UEBA Multi-Host Authentication Jump",
+    "actual_alert_count": 1
+  },
+  "observations": [
+    "Step 1 (Normal baseline reference): user01 routinely connects to WIN-LAB01 (10.10.10.20) and DC01 (10.10.10.10).",
+    "Step 2 (Abnormal attack pattern): user01 suddenly attempts sequential Kerberos authentications across DC01 and multiple novel internal servers.",
+    "Generated 10 authentication events: 5 off-hours failures followed by 5 multi-server TGS grants across 5 internal hosts.",
+    "AI / UEBA Behavioral Engine evaluated user profile deviation from baseline (1 host -> 5 novel hosts)."
+  ],
+  "analyst_conclusion": "Activity successfully identified by telemetry correlation and behavioral scoring. Matched expected detection criteria: 'SIG-AUTH-002 (Failed Logins) + UEBA Multi-Host Authentication Jump'."
+}

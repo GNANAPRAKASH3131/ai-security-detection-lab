@@ -1,0 +1,465 @@
+{
+  "saved_at": "2026-10-02T12:18:37.819851",
+  "total_events": 10,
+  "total_alerts": 1,
+  "events": [
+    {
+      "event_id": "75956774-7461-4f2f-aac9-39b03b36d851",
+      "timestamp": "2026-10-01T03:10:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4625,
+      "metadata": {
+        "logon_type": 3,
+        "auth_package": "NTLM",
+        "consecutive_failures": 1,
+        "Status": "0xC000006D"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "5c68936b-16bf-4778-a090-b198648128ca",
+      "timestamp": "2026-10-01T03:11:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4625,
+      "metadata": {
+        "logon_type": 3,
+        "auth_package": "NTLM",
+        "consecutive_failures": 2,
+        "Status": "0xC000006D"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "3e69a301-247e-4315-968d-f3c0f616c475",
+      "timestamp": "2026-10-01T03:12:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4625,
+      "metadata": {
+        "logon_type": 3,
+        "auth_package": "NTLM",
+        "consecutive_failures": 3,
+        "Status": "0xC000006D"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "6f966eb2-e802-4e85-aed8-ff22cca656d5",
+      "timestamp": "2026-10-01T03:13:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4625,
+      "metadata": {
+        "logon_type": 3,
+        "auth_package": "NTLM",
+        "consecutive_failures": 4,
+        "Status": "0xC000006D"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "d20ab357-73aa-4018-98d0-d494fa00cf0f",
+      "timestamp": "2026-10-01T03:14:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4625,
+      "metadata": {
+        "logon_type": 3,
+        "auth_package": "NTLM",
+        "consecutive_failures": 5,
+        "Status": "0xC000006D"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "679b6671-bd92-4cab-be89-6c791a1e6a8f",
+      "timestamp": "2026-10-01T03:20:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4769,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810000",
+        "TicketEncryptionType": "0x12",
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "f992cce2-2f4f-4cde-8fb7-157b99614cb9",
+      "timestamp": "2026-10-01T03:21:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.12",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4769,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "cifs/fs01.corp.lab",
+        "TicketOptions": "0x40810000",
+        "TicketEncryptionType": "0x12",
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "215407b9-6fa3-4147-94af-ea0870aebf43",
+      "timestamp": "2026-10-01T03:22:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.14",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4769,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "mssql/db01.corp.lab",
+        "TicketOptions": "0x40810000",
+        "TicketEncryptionType": "0x12",
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "7fbd99ab-6eca-4eff-8e34-fdfcb0483e8f",
+      "timestamp": "2026-10-01T03:23:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4769,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "http/app01.corp.lab",
+        "TicketOptions": "0x40810000",
+        "TicketEncryptionType": "0x12",
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "0a26b9dd-0a91-4f5d-9ea3-2bb077749f87",
+      "timestamp": "2026-10-01T03:24:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.45",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4769,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "cifs/bak01.corp.lab",
+        "TicketOptions": "0x40810000",
+        "TicketEncryptionType": "0x12",
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    }
+  ],
+  "alerts": [
+    {
+      "alert_id": "ALT-12E71928",
+      "timestamp": "2026-10-02T12:18:37.819033",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-AUTH-002: Multiple Failed Authentication Attempts (Brute Force/Spray)",
+      "severity": "HIGH",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "anomaly_score": 0.5,
+      "contributing_features": {},
+      "description": "Host WIN-LAB01 reported 5 consecutive failed authentication attempts for user 'user01'.",
+      "evidence_events": [
+        "d20ab357-73aa-4018-98d0-d494fa00cf0f"
+      ],
+      "response_triggered": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG"
+    }
+  ],
+  "anomaly_logs": [
+    {
+      "event_id": "75956774-7461-4f2f-aac9-39b03b36d851",
+      "timestamp": "2026-10-01T03:10:00",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.1825,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.35,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "5c68936b-16bf-4778-a090-b198648128ca",
+      "timestamp": "2026-10-01T03:11:00",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.1825,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.35,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "3e69a301-247e-4315-968d-f3c0f616c475",
+      "timestamp": "2026-10-01T03:12:00",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.2425,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.75,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "6f966eb2-e802-4e85-aed8-ff22cca656d5",
+      "timestamp": "2026-10-01T03:13:00",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.28,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 0.25,
+        "failed_ratio": 0.75,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "d20ab357-73aa-4018-98d0-d494fa00cf0f",
+      "timestamp": "2026-10-01T03:14:00",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.3175,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 0.5,
+        "failed_ratio": 0.75,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "679b6671-bd92-4cab-be89-6c791a1e6a8f",
+      "timestamp": "2026-10-01T03:20:00",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.4705,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 0.75,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "f992cce2-2f4f-4cde-8fb7-157b99614cb9",
+      "timestamp": "2026-10-01T03:21:00",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.458,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.7,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 1.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "215407b9-6fa3-4147-94af-ea0870aebf43",
+      "timestamp": "2026-10-01T03:22:00",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.458,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.7,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 1.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "7fbd99ab-6eca-4eff-8e34-fdfcb0483e8f",
+      "timestamp": "2026-10-01T03:23:00",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.488,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.85,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 1.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "0a26b9dd-0a91-4f5d-9ea3-2bb077749f87",
+      "timestamp": "2026-10-01T03:24:00",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.458,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.7,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 1.0,
+        "auth_frequency": 1.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    }
+  ],
+  "responses": [
+    {
+      "action_id": "RSP-5A2EBEAC",
+      "timestamp": "2026-10-02T12:18:37.819033",
+      "alert_id": "ALT-12E71928",
+      "target_host": "WIN-LAB01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] User 'user01' flagged for behavioral review; Generated SOC Ticket for host 'WIN-LAB01'.",
+      "remediation_notes": "Review authentication logs in SIEM; check for concurrent interactive sessions."
+    }
+  ]
+}

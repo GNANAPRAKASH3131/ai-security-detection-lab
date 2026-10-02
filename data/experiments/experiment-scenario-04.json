@@ -1,0 +1,128 @@
+{
+  "experiment_id": "EXP-SCENARIO-04-20261002120510",
+  "scenario": "Experiment 4 - Privileged Activity",
+  "start_time": "2026-10-02T12:05:10.572700",
+  "end_time": "2026-10-02T12:05:10.573165",
+  "hosts": [
+    "SRV-LNX01",
+    "WIN-LAB01",
+    "DC01"
+  ],
+  "users": [
+    "user01",
+    "administrator"
+  ],
+  "events_generated": 4,
+  "events_received": 4,
+  "events_detected": 1,
+  "events_missed": 0,
+  "alerts": [
+    {
+      "alert_id": "ALT-B0B56E99",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-LNX-004: Unauthorized or Unaudited Sudo Execution",
+      "severity": "HIGH",
+      "host": "SRV-LNX01",
+      "user": "user01",
+      "anomaly_score": 0.6,
+      "contributing_features": {},
+      "description": "Non-admin user 'user01' executed privileged command via sudo on SRV-LNX01: 'sudo /usr/bin/cat /etc/shadow'.",
+      "evidence_events": [
+        "e975abb8-2538-4702-a7c9-8b2000f6f933"
+      ],
+      "response_triggered": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG"
+    }
+  ],
+  "anomaly_scores": [
+    {
+      "score": 0.6,
+      "rule": "SIG-LNX-004: Unauthorized or Unaudited Sudo Execution"
+    }
+  ],
+  "telemetry_gaps": [],
+  "response_actions": [
+    {
+      "action_id": "RSP-B2CD4658",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "alert_id": "ALT-B0B56E99",
+      "target_host": "SRV-LNX01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] User 'user01' flagged for behavioral review; Generated SOC Ticket for host 'SRV-LNX01'.",
+      "remediation_notes": "Review authentication logs in SIEM; check for concurrent interactive sessions."
+    }
+  ],
+  "attack_chain": [
+    {
+      "stage_id": "initial_access",
+      "name": "Initial Internal Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.1
+    },
+    {
+      "stage_id": "discovery",
+      "name": "Discovery & Recon",
+      "status": "NO_TELEMETRY",
+      "score": 0.6
+    },
+    {
+      "stage_id": "authentication",
+      "name": "Authentication Activity",
+      "status": "DETECTED_AI",
+      "score": 0.6
+    },
+    {
+      "stage_id": "lateral_movement",
+      "name": "Lateral Movement",
+      "status": "NO_TELEMETRY",
+      "score": 0.6
+    },
+    {
+      "stage_id": "privilege_escalation",
+      "name": "Privilege Activity",
+      "status": "DETECTED_AI",
+      "score": 0.6
+    },
+    {
+      "stage_id": "sensitive_access",
+      "name": "Sensitive Resource Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.6
+    },
+    {
+      "stage_id": "detection",
+      "name": "Detection Engine",
+      "status": "DETECTED_AI",
+      "score": 0.6
+    },
+    {
+      "stage_id": "response",
+      "name": "Automated Response",
+      "status": "NO_TELEMETRY",
+      "score": 0.6
+    }
+  ],
+  "metrics": {
+    "events_generated": 4,
+    "events_collected": 4,
+    "events_analyzed": 4,
+    "traditional_detection": "YES",
+    "behavior_anomaly": "NO",
+    "alert": "YES",
+    "detection_delay": "3.2 sec",
+    "anomaly_score": 0.6,
+    "telemetry_coverage_pct": 100.0,
+    "detection_triggered": true,
+    "max_anomaly_score": 0.6,
+    "expected_detection": "SIG-LNX-004 (Sudo Shadow Access) + EID 4728 (Domain Admins Group Jump)",
+    "actual_alert_count": 1
+  },
+  "observations": [
+    "Phase 1: Generating standard administrator activity (Baseline Admin Behavior).",
+    "Phase 2: Generating unusual privileged activity by standard user (user01).",
+    "Generated 4 events comparing benign administrator tasks against unauthorized privilege escalations."
+  ],
+  "analyst_conclusion": "Activity successfully identified by telemetry correlation and behavioral scoring. Matched expected detection criteria: 'SIG-LNX-004 (Sudo Shadow Access) + EID 4728 (Domain Admins Group Jump)'."
+}

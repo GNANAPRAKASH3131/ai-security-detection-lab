@@ -1,0 +1,100 @@
+{
+  "experiment_id": "EXP-SCENARIO-05-20261002120516",
+  "scenario": "Experiment 5 - Telemetry Gap (Core Centerpiece)",
+  "start_time": "2026-10-02T12:05:16.729611",
+  "end_time": "2026-10-02T12:05:16.730422",
+  "hosts": [
+    "SRV-LNX01",
+    "WIN-LAB01"
+  ],
+  "users": [
+    "user01"
+  ],
+  "events_generated": 5,
+  "events_received": 2,
+  "events_detected": 0,
+  "events_missed": 3,
+  "alerts": [],
+  "anomaly_scores": [],
+  "telemetry_gaps": [
+    {
+      "type": "COLLECTOR_DROPPED_EVENTS",
+      "count": 3,
+      "impact": "Activity occurred while telemetry was suppressed (3 unobserved events)"
+    }
+  ],
+  "response_actions": [],
+  "attack_chain": [
+    {
+      "stage_id": "initial_access",
+      "name": "Initial Internal Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.1
+    },
+    {
+      "stage_id": "discovery",
+      "name": "Discovery & Recon",
+      "status": "NO_TELEMETRY",
+      "score": 0.273
+    },
+    {
+      "stage_id": "authentication",
+      "name": "Authentication Activity",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.273
+    },
+    {
+      "stage_id": "lateral_movement",
+      "name": "Lateral Movement",
+      "status": "NO_TELEMETRY",
+      "score": 0.273
+    },
+    {
+      "stage_id": "privilege_escalation",
+      "name": "Privilege Activity",
+      "status": "NO_TELEMETRY",
+      "score": 0.273
+    },
+    {
+      "stage_id": "sensitive_access",
+      "name": "Sensitive Resource Access",
+      "status": "NO_TELEMETRY",
+      "score": 0.273
+    },
+    {
+      "stage_id": "detection",
+      "name": "Detection Engine",
+      "status": "NO_TELEMETRY",
+      "score": 0.273
+    },
+    {
+      "stage_id": "response",
+      "name": "Automated Response",
+      "status": "NO_TELEMETRY",
+      "score": 0.273
+    }
+  ],
+  "metrics": {
+    "events_generated": 5,
+    "events_collected": 2,
+    "events_analyzed": 2,
+    "traditional_detection": "NO",
+    "behavior_anomaly": "NO",
+    "alert": "NO",
+    "detection_delay": "3.2 sec",
+    "anomaly_score": 0.27,
+    "telemetry_coverage_pct": 40.0,
+    "detection_triggered": false,
+    "max_anomaly_score": 0.273,
+    "expected_detection": "VISIBILITY_GAP_PROVEN (Zero AI Detection During Collector Interruption)",
+    "actual_alert_count": 0
+  },
+  "observations": [
+    "Step 1 (Normal Ingestion): Endpoint transmitting normal heartbeats and process telemetry to SIEM.",
+    "Step 2 (Telemetry Gap Active): Security agent connection interrupted on WIN-LAB01. Ingestion paused.",
+    "Step 3 (Telemetry Restored): Collector restored to ONLINE state. Subsequent telemetry ingested.",
+    "Summary: Total events generated = 5. Events received by SIEM = 2. Events dropped during gap = 3.",
+    "Conclusion: Attack actions executed during the visibility gap were completely missed by the AI engine (0 alerts produced for weaponized commands)."
+  ],
+  "analyst_conclusion": "Visibility gap detected: 3 events were generated on the endpoint but never received by the SIEM collector. The AI system could not detect unobserved actions."
+}

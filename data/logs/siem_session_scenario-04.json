@@ -1,0 +1,206 @@
+{
+  "saved_at": "2026-10-02T12:05:10.574291",
+  "total_events": 4,
+  "total_alerts": 1,
+  "events": [
+    {
+      "event_id": "d39d2c3d-20fb-4888-9cea-9e15f99d309b",
+      "timestamp": "2026-10-02T12:05:10.572700",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "powershell.exe",
+      "command_line": "powershell.exe -Command Get-Service -Name wuauserv",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\powershell.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "High",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "e975abb8-2538-4702-a7c9-8b2000f6f933",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "host": "SRV-LNX01",
+      "host_ip": "10.10.10.30",
+      "user": "user01",
+      "source_ip": "10.10.10.30",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 445,
+      "event_type": "privilege_elevation",
+      "action": "executed",
+      "process_name": "sudo",
+      "command_line": "sudo /usr/bin/cat /etc/shadow",
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "AuthLog",
+      "event_code": 1003,
+      "metadata": {
+        "service": "sudo",
+        "pwd": "/home/user01",
+        "target_user": "root",
+        "tty": "pts/0",
+        "command": "/usr/bin/cat /etc/shadow"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "dfa34a5a-c047-4396-bba0-817713d2c83c",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "privilege_elevation",
+      "action": "executed",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4672,
+      "metadata": {
+        "PrivilegeList": "SeDebugPrivilege, SeTcbPrivilege, SeBackupPrivilege"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "4ef20306-b49e-4259-9d37-e788f01b7548",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.10",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 445,
+      "event_type": "privilege_elevation",
+      "action": "executed",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4728,
+      "metadata": {
+        "SubjectUserName": "user01",
+        "MemberName": "CN=user01,CN=Users,DC=corp,DC=lab",
+        "TargetGroupName": "Domain Admins",
+        "PrivilegeJump": true
+      },
+      "is_simulation": true
+    }
+  ],
+  "alerts": [
+    {
+      "alert_id": "ALT-B0B56E99",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-LNX-004: Unauthorized or Unaudited Sudo Execution",
+      "severity": "HIGH",
+      "host": "SRV-LNX01",
+      "user": "user01",
+      "anomaly_score": 0.6,
+      "contributing_features": {},
+      "description": "Non-admin user 'user01' executed privileged command via sudo on SRV-LNX01: 'sudo /usr/bin/cat /etc/shadow'.",
+      "evidence_events": [
+        "e975abb8-2538-4702-a7c9-8b2000f6f933"
+      ],
+      "response_triggered": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG"
+    }
+  ],
+  "anomaly_logs": [
+    {
+      "event_id": "d39d2c3d-20fb-4888-9cea-9e15f99d309b",
+      "timestamp": "2026-10-02T12:05:10.572700",
+      "host": "WIN-LAB01",
+      "user": "administrator",
+      "score": 0.038,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "e975abb8-2538-4702-a7c9-8b2000f6f933",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "host": "SRV-LNX01",
+      "user": "user01",
+      "score": 0.393,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.85,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.5,
+        "admin_privilege_jump": 0.9
+      }
+    },
+    {
+      "event_id": "dfa34a5a-c047-4396-bba0-817713d2c83c",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.1655,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.9
+      }
+    },
+    {
+      "event_id": "4ef20306-b49e-4259-9d37-e788f01b7548",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.3455,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.9
+      }
+    }
+  ],
+  "responses": [
+    {
+      "action_id": "RSP-B2CD4658",
+      "timestamp": "2026-10-02T12:05:10.573165",
+      "alert_id": "ALT-B0B56E99",
+      "target_host": "SRV-LNX01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] User 'user01' flagged for behavioral review; Generated SOC Ticket for host 'SRV-LNX01'.",
+      "remediation_notes": "Review authentication logs in SIEM; check for concurrent interactive sessions."
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "saved_at": "2026-10-02T12:05:16.731820",
+  "total_events": 2,
+  "total_alerts": 0,
+  "events": [
+    {
+      "event_id": "04b36ead-f483-46ef-801b-ff17d2cf5726",
+      "timestamp": "2026-10-02T12:05:16.729611",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "explorer.exe",
+      "command_line": "explorer.exe",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\explorer.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "f3992d22-ecc6-4cc0-a10d-1cc8b408fb31",
+      "timestamp": "2026-10-02T12:05:16.730422",
+      "host": "SRV-LNX01",
+      "host_ip": "10.10.10.30",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 22,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "AuthLog",
+      "event_code": 1001,
+      "metadata": {
+        "service": "sshd",
+        "message": "Accepted publickey for user01 from 10.10.10.20 port 54321 ssh2",
+        "auth_method": "publickey"
+      },
+      "is_simulation": true
+    }
+  ],
+  "alerts": [],
+  "anomaly_logs": [
+    {
+      "event_id": "04b36ead-f483-46ef-801b-ff17d2cf5726",
+      "timestamp": "2026-10-02T12:05:16.729611",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.038,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "f3992d22-ecc6-4cc0-a10d-1cc8b408fb31",
+      "timestamp": "2026-10-02T12:05:16.730422",
+      "host": "SRV-LNX01",
+      "user": "user01",
+      "score": 0.273,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.85,
+        "dest_port_novelty": 0.8,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    }
+  ],
+  "responses": []
+}

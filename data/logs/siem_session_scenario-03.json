@@ -1,0 +1,250 @@
+{
+  "saved_at": "2026-10-02T12:05:09.377473",
+  "total_events": 5,
+  "total_alerts": 1,
+  "events": [
+    {
+      "event_id": "a9aa7d23-bccf-420b-b35f-42b493ade922",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4769,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "cifs/dc01.corp.lab",
+        "TicketOptions": "0x40810000",
+        "TicketEncryptionType": "0x12",
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "04ee0410-87be-4ccc-afc5-d9d6bc7d580e",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 445,
+      "event_type": "network_connection",
+      "action": "connected",
+      "process_name": "svchost.exe",
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 3,
+      "metadata": {
+        "Protocol": "tcp",
+        "Initiated": true,
+        "DestinationIsIpv6": false
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "84738957-5c7c-4275-b4ef-dcc2f7d1978e",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 445,
+      "event_type": "service_creation",
+      "action": "executed",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": "PSEXESVC",
+      "log_source": "SecurityEventLog",
+      "event_code": 7045,
+      "metadata": {
+        "ServiceName": "PSEXESVC",
+        "ImagePath": "%SystemRoot%\\PSEXESVC.exe",
+        "ServiceType": "user mode service",
+        "StartType": "demand start"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "399ed559-8a6b-44fa-a21a-6a11472ac54d",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "SRV-LNX01",
+      "host_ip": "10.10.10.30",
+      "user": "analyst",
+      "source_ip": "10.10.10.10",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 22,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "AuthLog",
+      "event_code": 1001,
+      "metadata": {
+        "service": "sshd",
+        "message": "Accepted publickey for analyst from 10.10.10.10 port 54321 ssh2",
+        "auth_method": "publickey"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "e49b4c6a-47b2-462f-bd8e-06ab730af541",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "SRV-LNX01",
+      "host_ip": "10.10.10.30",
+      "user": "analyst",
+      "source_ip": "10.10.10.30",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 445,
+      "event_type": "privilege_elevation",
+      "action": "executed",
+      "process_name": "sudo",
+      "command_line": "sudo /bin/bash",
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "AuthLog",
+      "event_code": 1003,
+      "metadata": {
+        "service": "sudo",
+        "pwd": "/home/analyst",
+        "target_user": "root",
+        "tty": "pts/0",
+        "command": "/bin/bash"
+      },
+      "is_simulation": true
+    }
+  ],
+  "alerts": [
+    {
+      "alert_id": "ALT-D1906143",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-WIN-006: PsExec/Lateral Movement Remote Service Installed",
+      "severity": "CRITICAL",
+      "host": "DC01",
+      "user": "user01",
+      "anomaly_score": 0.8,
+      "contributing_features": {},
+      "description": "Remote execution service installed on DC01: 'PSEXESVC' by user 'user01'.",
+      "evidence_events": [
+        "84738957-5c7c-4275-b4ef-dcc2f7d1978e"
+      ],
+      "response_triggered": "SIMULATED_HOST_ISOLATION_AND_ACCOUNT_FLAG"
+    }
+  ],
+  "anomaly_logs": [
+    {
+      "event_id": "a9aa7d23-bccf-420b-b35f-42b493ade922",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.263,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "04ee0410-87be-4ccc-afc5-d9d6bc7d580e",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.218,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "84738957-5c7c-4275-b4ef-dcc2f7d1978e",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "DC01",
+      "user": "user01",
+      "score": 0.218,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "399ed559-8a6b-44fa-a21a-6a11472ac54d",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "SRV-LNX01",
+      "user": "analyst",
+      "score": 0.113,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.8,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "e49b4c6a-47b2-462f-bd8e-06ab730af541",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "host": "SRV-LNX01",
+      "user": "analyst",
+      "score": 0.233,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.5,
+        "admin_privilege_jump": 0.9
+      }
+    }
+  ],
+  "responses": [
+    {
+      "action_id": "RSP-49014903",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "alert_id": "ALT-D1906143",
+      "target_host": "DC01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_HOST_ISOLATION_AND_ACCOUNT_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] Host 'DC01' isolated on software-switch port; User 'user01' flagged for session termination.",
+      "remediation_notes": "Requires Tier 2 Analyst triage before releasing network segment."
+    }
+  ]
+}

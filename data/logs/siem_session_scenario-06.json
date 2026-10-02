@@ -1,0 +1,303 @@
+{
+  "saved_at": "2026-10-02T12:18:42.869132",
+  "total_events": 7,
+  "total_alerts": 0,
+  "events": [
+    {
+      "event_id": "9dad5765-134c-4fb5-8d37-d42afe43ecf0",
+      "timestamp": "2026-10-01T10:00:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4624,
+      "metadata": {
+        "logon_type": 2,
+        "auth_package": "Kerberos",
+        "consecutive_failures": 0,
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "874a2dfc-4096-4a54-a1be-9fc5e8ec06f2",
+      "timestamp": "2026-10-01T10:02:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "mmc.exe",
+      "command_line": "C:\\Windows\\System32\\mmc.exe C:\\Windows\\System32\\dsa.msc",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\mmc.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "High",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "c4db681e-ae22-429e-9266-3757f023aaa0",
+      "timestamp": "2026-10-01T10:02:05",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "administrator",
+      "source_ip": "10.10.10.10",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4768,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810010",
+        "Status": "0x0",
+        "PreAuthType": "15"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "15339259-1e94-429c-98af-88abbbf18dad",
+      "timestamp": "2026-10-01T10:05:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 389,
+      "event_type": "network_connection",
+      "action": "connected",
+      "process_name": "mmc.exe",
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 3,
+      "metadata": {
+        "Protocol": "tcp",
+        "Initiated": true,
+        "DestinationIsIpv6": false
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "43be15e4-3c6e-45f6-8374-cf9dbde17bc9",
+      "timestamp": "2026-10-01T10:05:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.12",
+      "destination_port": 445,
+      "event_type": "network_connection",
+      "action": "connected",
+      "process_name": "mmc.exe",
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 3,
+      "metadata": {
+        "Protocol": "tcp",
+        "Initiated": true,
+        "DestinationIsIpv6": false
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "9260006b-efe2-4e87-84b8-8814a2095434",
+      "timestamp": "2026-10-01T10:05:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 22,
+      "event_type": "network_connection",
+      "action": "connected",
+      "process_name": "mmc.exe",
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 3,
+      "metadata": {
+        "Protocol": "tcp",
+        "Initiated": true,
+        "DestinationIsIpv6": false
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "6c1937d2-ff96-4b3d-8267-a2ea084d110c",
+      "timestamp": "2026-10-01T10:10:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "powershell.exe",
+      "command_line": "powershell.exe -Command Get-Service -Name wuauserv | Restart-Service",
+      "parent_process": "mmc.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\powershell.exe",
+        "ParentImage": "C:\\Windows\\mmc.exe",
+        "IntegrityLevel": "High",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    }
+  ],
+  "alerts": [],
+  "anomaly_logs": [
+    {
+      "event_id": "9dad5765-134c-4fb5-8d37-d42afe43ecf0",
+      "timestamp": "2026-10-01T10:00:00",
+      "host": "WIN-LAB01",
+      "user": "administrator",
+      "score": 0.038,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "874a2dfc-4096-4a54-a1be-9fc5e8ec06f2",
+      "timestamp": "2026-10-01T10:02:00",
+      "host": "WIN-LAB01",
+      "user": "administrator",
+      "score": 0.038,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "c4db681e-ae22-429e-9266-3757f023aaa0",
+      "timestamp": "2026-10-01T10:02:05",
+      "host": "DC01",
+      "user": "administrator",
+      "score": 0.038,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "15339259-1e94-429c-98af-88abbbf18dad",
+      "timestamp": "2026-10-01T10:05:00",
+      "host": "WIN-LAB01",
+      "user": "administrator",
+      "score": 0.038,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "43be15e4-3c6e-45f6-8374-cf9dbde17bc9",
+      "timestamp": "2026-10-01T10:05:00",
+      "host": "WIN-LAB01",
+      "user": "administrator",
+      "score": 0.168,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.7,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "9260006b-efe2-4e87-84b8-8814a2095434",
+      "timestamp": "2026-10-01T10:05:00",
+      "host": "WIN-LAB01",
+      "user": "administrator",
+      "score": 0.213,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.7,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "6c1937d2-ff96-4b3d-8267-a2ea084d110c",
+      "timestamp": "2026-10-01T10:10:00",
+      "host": "WIN-LAB01",
+      "user": "administrator",
+      "score": 0.038,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    }
+  ],
+  "responses": []
+}

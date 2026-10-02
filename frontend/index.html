@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Security Detection Lab | Evidence & Research Workbench</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="logo-area">
+      <div class="logo-badge">SEC-AI://RESEARCH-LAB</div>
+      <div class="logo-title">
+        <h1>AI-Based Security Detection & Internal Pentest Lab</h1>
+        <p>“If an internal attacker is inside the network, what does AI see, what does it miss, and why?”</p>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <div class="header-status" id="api-status">
+        <span class="status-indicator" id="health-indicator"></span>
+        <span id="health-text">API: CONNECTING...</span>
+      </div>
+      <div class="header-status" id="db-status">
+        <span class="status-indicator" id="db-indicator"></span>
+        <span id="db-text">DB: POSTGRESQL (5432)</span>
+      </div>
+      <button id="btn-sync-db" class="btn btn-secondary" title="Sync with Local PostgreSQL / pgAdmin">🗄️ Sync DB</button>
+      <button id="btn-establish-baseline" class="btn btn-secondary">📊 Baseline Lab</button>
+      <button id="btn-run-all" class="btn btn-primary">▶ Run All (Exp 1-7)</button>
+      <button id="btn-report" class="btn btn-purple">📄 Blog Evidence</button>
+      <button id="btn-reset" class="btn btn-danger">🗑 Reset</button>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="tab-dashboard">🎯 Master Research Dashboard</button>
+    <button class="tab-btn" data-tab="tab-findings">🔬 Lab Findings & Taxonomy</button>
+    <button class="tab-btn" data-tab="tab-scenarios">🧪 Experiments 1 - 7</button>
+    <button class="tab-btn" data-tab="tab-stream">📡 Live Telemetry Stream</button>
+    <button class="tab-btn" data-tab="tab-analyzer">🔍 Splunk Log Analyzer</button>
+    <button class="tab-btn" data-tab="tab-matrix">📊 ATT&CK Matrix</button>
+    <button class="tab-btn" data-tab="tab-baselines">👤 Baseline & UEBA</button>
+  </div>
+
+  <!-- TAB 1: MASTER RESEARCH DASHBOARD (The 4 Major Sections from Prompt #9) -->
+  <div id="tab-dashboard" class="tab-pane active" style="padding: 1.5rem 2rem;">
+    
+    <!-- Top Row: Section D (Telemetry Health) & Section B (Detection Coverage) -->
+    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+      
+      <!-- Section D: Telemetry Health (with interactive experiment toggles!) -->
+      <div class="card">
+        <div class="card-title">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="live-dot pulse"></span>
+            <span>Section D — Telemetry Health & Collector Pipeline</span>
+          </div>
+          <span style="font-size: 0.72rem; color: var(--cyan-accent); font-family: var(--font-mono);">INTERACTIVE CONTROLS</span>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+          Toggle component health states to deliberately create experiments (e.g. <code>Collector OFFLINE</code> or <code>SIEM PARTIAL</code>) and observe detection impacts.
+        </div>
+
+        <div class="telemetry-health-grid" id="telemetry-health-cards">
+          <!-- Populated by JS -->
+          <div class="health-item" data-comp="windows_telemetry">
+            <div class="health-name">Windows Telemetry (WIN-LAB01)</div>
+            <div class="health-toggle-group">
+              <button class="pill-btn active" data-state="ONLINE">ONLINE</button>
+              <button class="pill-btn" data-state="PARTIAL">PARTIAL</button>
+              <button class="pill-btn" data-state="OFFLINE">OFFLINE</button>
+            </div>
+          </div>
+          <div class="health-item" data-comp="linux_telemetry">
+            <div class="health-name">Linux Telemetry (SRV-LNX01)</div>
+            <div class="health-toggle-group">
+              <button class="pill-btn active" data-state="ONLINE">ONLINE</button>
+              <button class="pill-btn" data-state="PARTIAL">PARTIAL</button>
+              <button class="pill-btn" data-state="OFFLINE">OFFLINE</button>
+            </div>
+          </div>
+          <div class="health-item" data-comp="auth_logs">
+            <div class="health-name">Authentication Logs (AD/DC01)</div>
+            <div class="health-toggle-group">
+              <button class="pill-btn active" data-state="ONLINE">ONLINE</button>
+              <button class="pill-btn" data-state="PARTIAL">PARTIAL</button>
+              <button class="pill-btn" data-state="OFFLINE">OFFLINE</button>
+            </div>
+          </div>
+          <div class="health-item" data-comp="network_telemetry">
+            <div class="health-name">Network Telemetry (Zeek / HTTP)</div>
+            <div class="health-toggle-group">
+              <button class="pill-btn active" data-state="ONLINE">ONLINE</button>
+              <button class="pill-btn" data-state="PARTIAL">PARTIAL</button>
+              <button class="pill-btn" data-state="OFFLINE">OFFLINE</button>
+            </div>
+          </div>
+          <div class="health-item highlight-box" data-comp="collector">
+            <div class="health-name" style="font-weight: 700; color: #fff;">Telemetry Collector (Agent Ingest)</div>
+            <div class="health-toggle-group">
+              <button class="pill-btn active" data-state="ONLINE">ONLINE</button>
+              <button class="pill-btn" data-state="PARTIAL">PARTIAL</button>
+              <button class="pill-btn" data-state="OFFLINE">OFFLINE</button>
+            </div>
+          </div>
+          <div class="health-item" data-comp="siem_ingestion">
+            <div class="health-name">SIEM Ingestion Engine</div>
+            <div class="health-toggle-group">
+              <button class="pill-btn active" data-state="ONLINE">ONLINE</button>
+              <button class="pill-btn" data-state="PARTIAL">PARTIAL</button>
+              <button class="pill-btn" data-state="OFFLINE">OFFLINE</button>
+            </div>
+          </div>
+          <div class="health-item" data-comp="ai_analytics">
+            <div class="health-name">AI / UEBA Analytics Engine</div>
+            <div class="health-toggle-group">
+              <button class="pill-btn active" data-state="ONLINE">ONLINE</button>
+              <button class="pill-btn" data-state="PARTIAL">PARTIAL</button>
+              <button class="pill-btn" data-state="OFFLINE">OFFLINE</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+          <div id="health-summary-badge" class="badge badge-low">STATUS: ALL SYSTEMS ONLINE (100% VISIBILITY)</div>
+          <button id="btn-apply-gap-sim" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.3rem 0.75rem;">⚡ Trigger Exp 5 Blindspot State</button>
+        </div>
+      </div>
+
+      <!-- Section B: Detection Coverage -->
+      <div class="card">
+        <div class="card-title">
+          <span>Section B — Detection Coverage by Attack Stage</span>
+          <span class="badge badge-medium">EMPIRICAL LAB METRICS</span>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+          Measures what percentage of attack stages trigger deterministic rules or AI behavioral anomalies.
+        </div>
+
+        <div class="coverage-bar-group">
+          <div class="coverage-item">
+            <div class="coverage-label-row">
+              <span class="coverage-title">Discovery & Recon</span>
+              <span class="coverage-pct" id="cov-val-discovery">100% (150/150 events)</span>
+            </div>
+            <div class="coverage-bar"><div class="coverage-fill green" id="cov-bar-discovery" style="width: 100%;"></div></div>
+          </div>
+
+          <div class="coverage-item">
+            <div class="coverage-label-row">
+              <span class="coverage-title">Authentication Anomaly</span>
+              <span class="coverage-pct" id="cov-val-auth">95% (Score: 0.84)</span>
+            </div>
+            <div class="coverage-bar"><div class="coverage-fill green" id="cov-bar-auth" style="width: 95%;"></div></div>
+          </div>
+
+          <div class="coverage-item">
+            <div class="coverage-label-row">
+              <span class="coverage-title">Lateral Movement (Win -> DC -> Lnx)</span>
+              <span class="coverage-pct" id="cov-val-lateral">85% (3/3 hops detected)</span>
+            </div>
+            <div class="coverage-bar"><div class="coverage-fill cyan" id="cov-bar-lateral" style="width: 85%;"></div></div>
+          </div>
+
+          <div class="coverage-item">
+            <div class="coverage-label-row">
+              <span class="coverage-title">Privileged Activity (Group Jump / Sudo)</span>
+              <span class="coverage-pct" id="cov-val-priv">92% (Score: 0.96)</span>
+            </div>
+            <div class="coverage-bar"><div class="coverage-fill green" id="cov-bar-priv" style="width: 92%;"></div></div>
+          </div>
+
+          <div class="coverage-item highlight-red">
+            <div class="coverage-label-row">
+              <span class="coverage-title" style="color: #f87171; font-weight: 700;">Telemetry Gap (Collector Blindspot)</span>
+              <span class="coverage-pct" id="cov-val-gap" style="color: #f87171;">0% (Zero AI Detection)</span>
+            </div>
+            <div class="coverage-bar"><div class="coverage-fill red" id="cov-bar-gap" style="width: 10%;"></div></div>
+          </div>
+        </div>
+
+        <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 0.85rem;">
+          * Note: Telemetry Gap drops detection to 0% because the AI analytics pipeline receives no telemetry during collector black-outs.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Middle Row: Section A (Attack Timeline) -->
+    <div class="card" style="margin-bottom: 1.25rem;">
+      <div class="card-title">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span>Section A — End-to-End Attack Timeline & Telemetry Journey</span>
+          <span class="badge badge-high">Chronological Execution</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button id="btn-run-chain" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">▶ Execute Full Chain (Exp 7)</button>
+        </div>
+      </div>
+
+      <!-- Horizontal Attack Flow Nodes -->
+      <div class="timeline-nodes-container" id="dashboard-timeline-container">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Bottom Row: Section C (AI Analytics Table) -->
+    <div class="card">
+      <div class="card-title">
+        <span>Section C — AI & UEBA Behavioral Analytics Engine</span>
+        <span style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">Multi-Feature Anomaly Scores</span>
+      </div>
+      <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+        Detailed behavioral evaluation comparing historical baseline against current observed behavior across users and hosts.
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Host</th>
+              <th>Observed Behavior</th>
+              <th>Historical Baseline</th>
+              <th>Current Deviation</th>
+              <th>Anomaly Score</th>
+              <th>Detection Reason & Contributing Features</th>
+            </tr>
+          </thead>
+          <tbody id="dashboard-ai-table-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TAB 2: LAB FINDINGS & TAXONOMY (DETECTED, MISSED, PARTIAL, PENTEST ANALYSIS) -->
+  <div id="tab-findings" class="tab-pane" style="padding: 1.5rem 2rem;">
+    
+    <!-- Findings Header Card -->
+    <div class="card" style="margin-bottom: 1.25rem; background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); border: 1px solid rgba(6, 182, 212, 0.3);">
+      <div class="card-title" style="border-bottom: none; margin-bottom: 0.5rem;">
+        <span style="font-size: 1.2rem; color: #fff;">🏆 Core Research Findings: What Does AI See, What Does It Miss, and Why?</span>
+        <button id="btn-download-blog-md" class="btn btn-purple" style="font-size: 0.8rem;">📥 Export Blog Report (Markdown)</button>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+        This synthesis summarizes findings from 7 controlled research experiments simulating an adversary who has already achieved an internal foothold on a workstation (<code>WIN-LAB01</code>: 10.10.10.20).
+      </div>
+    </div>
+
+    <!-- 3-Column Findings Taxonomy (DETECTED / MISSED / PARTIAL) -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
+      
+      <!-- Box 1: DETECTED -->
+      <div class="card finding-card green-border">
+        <div class="card-title">
+          <span style="color: #4ade80; font-weight: 800;">1. DETECTED</span>
+          <span class="badge badge-low" id="findings-count-detected">4 Scenarios</span>
+        </div>
+        <div class="finding-subtitle">Why was it detected?</div>
+        <ul class="finding-list">
+          <li><strong>High Destination Novelty:</strong> Standard workstation user suddenly authenticating to Domain Controller and Linux DB Server.</li>
+          <li><strong>Velocity Spikes:</strong> 5+ failed logons in <60 seconds triggered statistical z-score burst rules.</li>
+          <li><strong>Explicit Privilege Jumps:</strong> Adding user01 to Domain Admins (EID 4728) produced anomaly score = <strong>0.96</strong>.</li>
+          <li><strong>High-Risk Binaries:</strong> Execution of <code>nltest.exe</code> and <code>psexec</code> matched deterministic SIEM rules.</li>
+        </ul>
+      </div>
+
+      <!-- Box 2: MISSED -->
+      <div class="card finding-card red-border">
+        <div class="card-title">
+          <span style="color: #f87171; font-weight: 800;">2. MISSED</span>
+          <span class="badge badge-high" id="findings-count-missed">Telemetry Gap</span>
+        </div>
+        <div class="finding-subtitle">Why was it missed?</div>
+        <ul class="finding-list">
+          <li><strong>Telemetry Interruption:</strong> An AI detection system cannot detect what it cannot observe (0 events received = 0 score).</li>
+          <li><strong>Collector Suppression:</strong> When endpoint logging was paused, <code>Invoke-Mimikatz</code> executed with 0 alerts produced.</li>
+          <li><strong>Living off the Land:</strong> Low-and-slow single commands spaced over hours fall beneath rolling sliding-window thresholds.</li>
+        </ul>
+      </div>
+
+      <!-- Box 3: PARTIAL -->
+      <div class="card finding-card yellow-border">
+        <div class="card-title">
+          <span style="color: #facc15; font-weight: 800;">3. PARTIAL</span>
+          <span class="badge badge-medium" id="findings-count-partial">Mixed Segments</span>
+        </div>
+        <div class="finding-subtitle">Why was it partial?</div>
+        <ul class="finding-list">
+          <li><strong>Asymmetric Forwarding:</strong> If endpoint process logs are enabled but network sensors are offline, port sweeps appear only as isolated processes.</li>
+          <li><strong>Degraded Collector Rate:</strong> Intermittent dropping lowers anomaly confidence below the 0.61 alerting threshold.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Dual Row: Internal Pentest Analysis & Blue Team Recommendations -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+      
+      <div class="card">
+        <div class="card-title">
+          <span>Internal Penetration Tester's Technical Analysis</span>
+          <span class="badge badge-purple">Adversary Perspective</span>
+        </div>
+        <div class="pentest-notes" id="pentest-analysis-content">
+          <div class="note-bullet">
+            <strong>1. AI Is Dependent on Telemetry Ingestion:</strong>
+            Statistical anomaly engines operate exclusively on ingested logs. Tampering with or exhausting the endpoint logging agent completely neutralizes behavioral defense.
+          </div>
+          <div class="note-bullet">
+            <strong>2. Living off the Land & Business Hours:</strong>
+            Adversaries executing built-in administrative tools (PowerShell, MMC, WMI) during regular business hours generate low novelty scores ($<0.30$) if volume remains moderate.
+          </div>
+          <div class="note-bullet">
+            <strong>3. Context Disconnect:</strong>
+            AI models measure mathematical baseline deviation, but cannot understand business intent (e.g. distinguishing an authorized script from an attacker running the same command).
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Actionable Security Recommendations for Blue Teams</span>
+          <span class="badge badge-low">Defensive Engineering</span>
+        </div>
+        <div class="pentest-notes">
+          <div class="note-bullet">
+            <strong>1. Agent Heartbeat Monitoring:</strong>
+            Alert immediately if any workstation or server agent stops transmitting heartbeats for $>60$ seconds.
+          </div>
+          <div class="note-bullet">
+            <strong>2. Independent Out-of-Band Network Telemetry:</strong>
+            Deploy network flow sensors (Zeek/Suricata) that endpoints cannot disable or tamper with.
+          </div>
+          <div class="note-bullet">
+            <strong>3. Dual-Layer Defense Strategy:</strong>
+            Combine deterministic signatures (Sigma/YARA) with behavioral models to prevent single-point detection failures.
+          </div>
+          <div class="note-bullet">
+            <strong>4. Just-In-Time (JIT) Privileged Access:</strong>
+            Eliminate persistent domain admin privileges on workstations to prevent credential reuse.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TAB 3: DEDICATED EXPERIMENTS 1 TO 7 -->
+  <div id="tab-scenarios" class="tab-pane" style="padding: 1.5rem 2rem;">
+    <div class="dashboard-container">
+      
+      <!-- Left Sidebar: Scenarios 1 to 7 -->
+      <aside class="sidebar">
+        <div class="card">
+          <div class="card-title">
+            <span>Research Experiments</span>
+            <span style="font-size: 0.7rem; color: var(--cyan-accent); font-family: var(--font-mono);">SCENARIOS 1-7</span>
+          </div>
+          <div class="scenario-list">
+            <div class="scenario-btn active" data-id="1">
+              <span class="scenario-name">Exp 1. Internal Discovery</span>
+              <span class="scenario-id">SCENARIO-01 | Host & AD Sweep (150 Events)</span>
+            </div>
+            <div class="scenario-btn" data-id="2">
+              <span class="scenario-name">Exp 2. Authentication Anomaly</span>
+              <span class="scenario-id">SCENARIO-02 | Multi-Server Spray & Jump</span>
+            </div>
+            <div class="scenario-btn" data-id="3">
+              <span class="scenario-name">Exp 3. Lateral Movement</span>
+              <span class="scenario-id">SCENARIO-03 | Workstation -> DC -> Linux</span>
+            </div>
+            <div class="scenario-btn" data-id="4">
+              <span class="scenario-name">Exp 4. Privileged Activity</span>
+              <span class="scenario-id">SCENARIO-04 | Admin vs Unprivileged Jump</span>
+            </div>
+            <div class="scenario-btn" data-id="5">
+              <span class="scenario-name">Exp 5. Telemetry Gap</span>
+              <span class="scenario-id">SCENARIO-05 | Core Centerpiece Blindspot</span>
+            </div>
+            <div class="scenario-btn" data-id="6">
+              <span class="scenario-name">Exp 6. False Positives</span>
+              <span class="scenario-id">SCENARIO-06 | Anomalous ≠ Malicious</span>
+            </div>
+            <div class="scenario-btn" data-id="7">
+              <span class="scenario-name">Exp 7. Full Attack Chain</span>
+              <span class="scenario-id">SCENARIO-07 | End-to-End Multi-Stage Chain</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Network Topology Card -->
+        <div class="card">
+          <div class="card-title">Lab Network Subnet (10.10.10.0/24)</div>
+          <div style="font-size: 0.78rem; display: flex; flex-direction: column; gap: 0.4rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <div><strong style="color: #fff;">DC01:</strong> 10.10.10.10 (Domain Controller)</div>
+            <div><strong style="color: #fff;">WIN-LAB01:</strong> 10.10.10.20 (Client Workstation)</div>
+            <div><strong style="color: #fff;">SRV-LNX01:</strong> 10.10.10.30 (Linux App Server)</div>
+            <div><strong style="color: #fff;">KALI-01:</strong> 10.10.10.50 (Internal Attacker)</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Experiment Panel -->
+      <main class="main-content">
+        
+        <!-- Experiment Header & Execute Action -->
+        <div class="card">
+          <div class="card-title">
+            <div>
+              <span id="exp-title" style="font-size: 1.1rem; color: #fff;">Experiment 1: Internal Discovery</span>
+              <span id="exp-id" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan-accent); margin-left: 0.5rem;">SCENARIO-01</span>
+            </div>
+            <button id="btn-run-single" class="btn btn-primary">▶ Execute This Scenario</button>
+          </div>
+
+          <!-- Specific Experiment Evidence Table (As requested by Prompt) -->
+          <div id="scenario-specific-evidence-box" style="margin-top: 0.5rem; margin-bottom: 1rem;">
+            <!-- Populated dynamically based on active scenario -->
+          </div>
+
+          <!-- Attack Chain Nodes -->
+          <div class="attack-chain-nodes" id="attack-chain-container">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div class="legend-bar">
+            <div class="legend-item"><span class="dot green"></span> Full Telemetry</div>
+            <div class="legend-item"><span class="dot yellow"></span> Partial Visibility</div>
+            <div class="legend-item"><span class="dot red"></span> Telemetry Blindspot</div>
+            <div class="legend-item"><span class="dot blue"></span> AI Anomaly Alert</div>
+          </div>
+        </div>
+
+        <!-- Telemetry & Detection Metrics -->
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-label">Events Generated</div>
+            <div class="stat-val" id="stat-gen">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Events Ingested</div>
+            <div class="stat-val" id="stat-rec" style="color: var(--cyan-accent);">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Max Anomaly Score</div>
+            <div class="stat-val" id="stat-score" style="color: #f87171;">0.00</div>
+            <div class="stat-bar-container">
+              <div class="stat-bar-fill" id="stat-score-bar"></div>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Telemetry Coverage</div>
+            <div class="stat-val" id="stat-coverage" style="color: var(--green-telemetry);">100%</div>
+          </div>
+        </div>
+
+        <!-- Dual Column: Detection Alerts & SOAR Containment -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem;">
+          
+          <div class="card">
+            <div class="card-title">Detection Alerts (Signature & AI Behavioral Engine)</div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Severity</th>
+                    <th>Detection / Rule</th>
+                    <th>Target / User</th>
+                    <th>AI Score</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody id="alerts-table-body">
+                  <!-- Rendered by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Automated SOAR Responses</div>
+            <div id="response-container">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Observation Logs & Analyst Conclusion -->
+        <div class="card">
+          <div class="card-title">Internal Pentester & Detection Engineering Observations</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">OBSERVATION LOG</div>
+              <div class="observation-box" id="observations-log">Awaiting scenario execution...</div>
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">ANALYST CONCLUSION</div>
+              <div class="observation-box" id="analyst-conclusion" style="color: #4ade80;">Awaiting analysis...</div>
+            </div>
+          </div>
+          <div id="exp-time" style="font-size: 0.7rem; color: var(--text-dim); margin-top: 0.75rem; font-family: var(--font-mono);"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- TAB 4: LIVE TELEMETRY STREAM -->
+  <div id="tab-stream" class="tab-pane" style="padding: 1.5rem 2rem;">
+    <div class="card">
+      <div class="card-title">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="live-dot pulse"></span>
+          <span>SIEM Telemetry Ingestion Console (Real-Time Monitor)</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <select id="stream-severity-filter" class="select-cyber">
+            <option value="ALL">All Severities</option>
+            <option value="HIGH">High Severity Only</option>
+            <option value="MEDIUM">Medium + High</option>
+            <option value="LOW">Low / Info</option>
+          </select>
+          <select id="stream-host-filter" class="select-cyber">
+            <option value="ALL">All Hosts (10.10.10.0/24)</option>
+            <option value="WIN-LAB01">WIN-LAB01 (10.10.10.20)</option>
+            <option value="DC01">DC01 (10.10.10.10)</option>
+            <option value="SRV-LNX01">SRV-LNX01 (10.10.10.30)</option>
+          </select>
+          <button id="btn-stream-toggle" class="btn btn-secondary">⏸ Pause Stream</button>
+          <button id="btn-stream-clear" class="btn btn-secondary">🗑 Clear Terminal</button>
+        </div>
+      </div>
+      
+      <!-- Terminal Console Window -->
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span>● ● ● telemetry_daemon --log-stream --rfc1918</span>
+          <span id="stream-counter" style="color: var(--cyan-accent);">0 Events Ingested</span>
+        </div>
+        <div class="terminal-body" id="stream-terminal-body">
+          <div class="log-entry info">[*] SIEM Telemetry Collector initialized. Listening on 10.10.10.0/24...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: SPLUNK-STYLE LOG ANALYZER -->
+  <div id="tab-analyzer" class="tab-pane" style="padding: 1.5rem 2rem;">
+    
+    <!-- Top Ingestion Card: File Upload Dropzone & Paste Drawer -->
+    <div class="card" style="margin-bottom: 1.25rem;">
+      <div class="card-title">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span>⚡ SIEM Log Ingestion & Forensic Upload</span>
+          <span class="badge badge-medium">Splunk-Style Analyzer</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button id="btn-toggle-paste" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.25rem 0.6rem;">📝 Paste Text</button>
+          <button id="btn-refresh-log-files" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.25rem 0.6rem;">📂 Server Logs (/data/)</button>
+        </div>
+      </div>
+
+      <input type="file" id="log-file-input" style="display: none;" accept="*/*" />
+
+      <!-- Drag & Drop Upload Zone -->
+      <div class="upload-dropzone" id="log-dropzone">
+        <span class="upload-icon">📁</span>
+        <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem;">
+          Drag & Drop your log file here, or click the button below
+        </div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+          Supports Windows Security Event Logs, Sysmon EID 1/3, Linux auth.log, JSON exports, CSV, and text dumps.
+        </div>
+        <div style="margin-bottom: 0.75rem;">
+          <button type="button" id="btn-browse-file" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.8rem; pointer-events: auto;">
+            📂 Select Log File from Computer
+          </button>
+        </div>
+        <div>
+          <span class="format-pill">.log</span>
+          <span class="format-pill">.json</span>
+          <span class="format-pill">.txt</span>
+          <span class="format-pill">.csv</span>
+          <span class="format-pill">.syslog</span>
+        </div>
+      </div>
+
+      <!-- File Status & Paste Area -->
+      <div id="file-info-bar" style="display: none; margin-top: 0.75rem; padding: 0.5rem 0.85rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: var(--radius-sm); font-size: 0.75rem; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span id="uploaded-filename" style="font-weight: 700; color: #fff;">file.log</span>
+          <span id="uploaded-filesize" style="color: var(--text-muted); font-family: var(--font-mono);">0 KB</span>
+          <span id="uploaded-filelines" style="color: var(--cyan-accent); font-family: var(--font-mono);">0 lines</span>
+        </div>
+        <button id="btn-analyze-file" class="btn btn-primary" style="padding: 0.25rem 0.75rem; font-size: 0.72rem;">⚡ Run SIEM Analysis</button>
+      </div>
+
+      <!-- Collapsible Textarea & Presets -->
+      <div id="paste-box-container" style="display: none; margin-top: 1rem;">
+        <div style="margin-bottom: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;">
+          <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;">SAMPLE LOG PRESETS:</span>
+          <button class="btn-chip" data-sample="psexec">PsExec Lateral Pivot</button>
+          <button class="btn-chip" data-sample="spray">Off-Hours Password Spray</button>
+          <button class="btn-chip" data-sample="sudo">Linux Sudo Root Abuse</button>
+          <button class="btn-chip" data-sample="benign">Benign MMC Admin Baseline</button>
+        </div>
+        <textarea id="analyzer-input" class="cyber-textarea" rows="6" placeholder="Or paste raw log text directly here..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+          <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono);" id="analyzer-char-count">0 characters</div>
+          <button id="btn-analyze" class="btn btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.75rem;">⚡ Analyze Pasted Logs</button>
+        </div>
+      </div>
+
+      <!-- Server Archives Drawer -->
+      <div id="server-logs-container" style="display: none; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem;">ARCHIVED LAB SESSIONS ON DISK (/data/logs/):</div>
+        <div id="saved-log-files-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.5rem;"></div>
+      </div>
+    </div>
+
+    <!-- Splunk Search Bar -->
+    <div class="splunk-searchbar">
+      <span style="color: var(--cyan-accent); font-size: 0.9rem;">🔍</span>
+      <input type="text" id="splunk-search-input" class="splunk-input" placeholder="Search SPL query (e.g. user:admin | eid:4625 | host:DC01 | psexec | status:failure | threat:high)..." />
+      <button id="btn-clear-search" class="btn btn-secondary" style="padding: 0.2rem 0.5rem; font-size: 0.7rem;">✕ Clear</button>
+    </div>
+
+    <!-- Main Splunk Investigation View -->
+    <div style="display: grid; grid-template-columns: 280px 1fr; gap: 1.25rem; align-items: start;">
+      
+      <!-- Left Column: Discovered Fields Sidebar -->
+      <div>
+        <div class="card" style="margin-bottom: 1rem; padding: 0.85rem;">
+          <div class="card-title" style="margin-bottom: 0.6rem; font-size: 0.8rem;">
+            <span>Discovered Fields</span>
+            <span id="fields-count-badge" class="badge badge-low">0 Fields</span>
+          </div>
+
+          <div class="field-summary-card">
+            <div class="field-summary-header">
+              <span>Log Sources</span>
+              <span id="src-unique-count">0</span>
+            </div>
+            <div id="field-list-sources" style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <div style="color: var(--text-dim); font-size: 0.7rem;">Upload log to populate</div>
+            </div>
+          </div>
+
+          <div class="field-summary-card">
+            <div class="field-summary-header">
+              <span>Event Codes / IDs</span>
+              <span id="eid-unique-count">0</span>
+            </div>
+            <div id="field-list-eids" style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <div style="color: var(--text-dim); font-size: 0.7rem;">Upload log to populate</div>
+            </div>
+          </div>
+
+          <div class="field-summary-card">
+            <div class="field-summary-header">
+              <span>Hosts (IPs)</span>
+              <span id="hosts-unique-count">0</span>
+            </div>
+            <div id="field-list-hosts" style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <div style="color: var(--text-dim); font-size: 0.7rem;">Upload log to populate</div>
+            </div>
+          </div>
+
+          <div class="field-summary-card">
+            <div class="field-summary-header">
+              <span>Users / Accounts</span>
+              <span id="users-unique-count">0</span>
+            </div>
+            <div id="field-list-users" style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <div style="color: var(--text-dim); font-size: 0.7rem;">Upload log to populate</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Events Table -->
+      <div>
+        <div class="card" id="analyzer-results-card">
+          <div class="card-title">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span>SIEM Forensic Assessment & Event Stream</span>
+              <span id="matching-events-counter" style="font-size: 0.72rem; color: var(--text-muted);">0 matching events</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <span id="analyzer-threat-badge" class="badge badge-low">READY FOR INPUT</span>
+              <button id="btn-export-analysis" class="btn btn-secondary" style="padding: 0.2rem 0.55rem; font-size: 0.7rem;">📥 Export JSON</button>
+            </div>
+          </div>
+
+          <div id="analyzer-results-body">
+            <div style="padding: 3rem 2rem; text-align: center; color: var(--text-dim);">
+              <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔍</div>
+              <div style="font-size: 1rem; color: #fff; margin-bottom: 0.4rem; font-weight: 700;">No Log Data Ingested Yet</div>
+              <div>Drag & drop a <code>.log</code>, <code>.json</code>, or <code>.txt</code> file above, or pick a sample preset to begin real-time Splunk-like log analysis.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB 6: MITRE ATT&CK DETECTION MATRIX -->
+  <div id="tab-matrix" class="tab-pane" style="padding: 1.5rem 2rem;">
+    <div class="card">
+      <div class="card-title">
+        <span>Empirical MITRE ATT&CK Detection Matrix</span>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Derived from Actual Lab Simulations</span>
+      </div>
+      <div id="matrix-content"></div>
+    </div>
+  </div>
+
+  <!-- TAB 7: BASELINE & BEHAVIORAL PROFILES (Step 1 From Prompt) -->
+  <div id="tab-baselines" class="tab-pane" style="padding: 1.5rem 2rem;">
+    
+    <!-- Baseline Establishment Card -->
+    <div class="card" style="margin-bottom: 1.25rem;">
+      <div class="card-title">
+        <div>
+          <span>1. Normal Baseline (Established Before Attacks)</span>
+          <span class="badge badge-low" style="margin-left: 0.5rem;">Pre-Attack Calibration</span>
+        </div>
+        <button id="btn-re-establish-baseline" class="btn btn-primary" style="font-size: 0.75rem;">↺ Re-Generate Normal Baseline</button>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Before simulating attacks, the lab generates normal operational activity (<code>user01</code> logins, DNS, web access, administrator MMC queries) to train baseline models and establish the normal metrics profile.
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Baseline Established Value</th>
+              <th>Observed Normal Range</th>
+              <th>Anomaly Trigger Threshold</th>
+            </tr>
+          </thead>
+          <tbody id="baseline-metrics-table-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- User UEBA Profiles Cards -->
+    <div class="card">
+      <div class="card-title">
+        <span>User & Entity Behavioral Analytics (UEBA) Learned Profiles</span>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Normal Hours, Authorized Hosts & Known Binaries</span>
+      </div>
+      <div id="baselines-content"></div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,608 @@
+{
+  "saved_at": "2026-10-02T12:18:41.618286",
+  "total_events": 12,
+  "total_alerts": 3,
+  "events": [
+    {
+      "event_id": "674d3761-0384-4a9a-8d47-d7e9ab680b80",
+      "timestamp": "2026-10-01T10:01:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "cmd.exe",
+      "command_line": "cmd.exe /c whoami /priv",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\cmd.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "c9aaac58-eb29-4ef8-acc5-d4a785e24dad",
+      "timestamp": "2026-10-01T10:02:10",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "powershell.exe",
+      "command_line": "powershell.exe -NoP -c nltest /dclist:corp.lab",
+      "parent_process": "cmd.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\powershell.exe",
+        "ParentImage": "C:\\Windows\\cmd.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "57b7e185-1f31-4df1-9dcf-d422d2a3d73d",
+      "timestamp": "2026-10-01T10:02:30",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "net.exe",
+      "command_line": "net group \"Domain Admins\" /domain",
+      "parent_process": "powershell.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\net.exe",
+        "ParentImage": "C:\\Windows\\powershell.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "cf850616-dc42-40b8-95ba-fc9f7adc4e1a",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "svc_backup",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4768,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810010",
+        "Status": "0x6",
+        "PreAuthType": "15",
+        "consecutive_failures": 1
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "27c18e5c-1c6a-4f33-b11a-553c2c1a4bf0",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "svc_backup",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4768,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810010",
+        "Status": "0x6",
+        "PreAuthType": "15",
+        "consecutive_failures": 2
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "2192fa17-75d7-4054-abce-446dea9eec34",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "svc_backup",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4768,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810010",
+        "Status": "0x6",
+        "PreAuthType": "15",
+        "consecutive_failures": 3
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "67959a17-8cbf-4266-b233-472161934343",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "svc_backup",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "failure",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4768,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810010",
+        "Status": "0x6",
+        "PreAuthType": "15",
+        "consecutive_failures": 4
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "a3fe62fd-9b06-4126-a394-ff3f749601a8",
+      "timestamp": "2026-10-01T10:04:20",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "svc_backup",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4768,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810010",
+        "Status": "0x0",
+        "PreAuthType": "15",
+        "consecutive_failures": 0
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "3672cf30-01c0-4466-a0fc-988d3e7336ad",
+      "timestamp": "2026-10-01T10:06:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "svc_backup",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 445,
+      "event_type": "service_creation",
+      "action": "executed",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": "PSEXESVC",
+      "log_source": "SecurityEventLog",
+      "event_code": 7045,
+      "metadata": {
+        "ServiceName": "PSEXESVC",
+        "ImagePath": "%SystemRoot%\\PSEXESVC.exe",
+        "ServiceType": "user mode service",
+        "StartType": "demand start"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "2c543ce1-ccf1-4aec-9b17-2ee0d84be465",
+      "timestamp": "2026-10-01T10:08:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "svc_backup",
+      "source_ip": "10.10.10.10",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 445,
+      "event_type": "privilege_elevation",
+      "action": "executed",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4728,
+      "metadata": {
+        "SubjectUserName": "svc_backup",
+        "MemberName": "CN=user01,CN=Users,DC=corp,DC=lab",
+        "TargetGroupName": "Domain Admins",
+        "PrivilegeJump": true
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "27b1f78b-d55c-4dd6-8deb-205c21dc4d35",
+      "timestamp": "2026-10-01T10:09:10",
+      "host": "SRV-LNX01",
+      "host_ip": "10.10.10.30",
+      "user": "webadmin",
+      "source_ip": "10.10.10.10",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 22,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "AuthLog",
+      "event_code": 1001,
+      "metadata": {
+        "service": "sshd",
+        "message": "Accepted publickey for webadmin from 10.10.10.10 port 54321 ssh2",
+        "auth_method": "publickey"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "e8105794-4fab-4f91-94fc-74ac12d4c5a3",
+      "timestamp": "2026-10-01T10:09:40",
+      "host": "SRV-LNX01",
+      "host_ip": "10.10.10.30",
+      "user": "webadmin",
+      "source_ip": "10.10.10.30",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 445,
+      "event_type": "privilege_elevation",
+      "action": "executed",
+      "process_name": "sudo",
+      "command_line": "sudo /bin/cat /etc/shadow",
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "AuthLog",
+      "event_code": 1003,
+      "metadata": {
+        "service": "sudo",
+        "pwd": "/home/webadmin",
+        "target_user": "root",
+        "tty": "pts/0",
+        "command": "/bin/cat /etc/shadow"
+      },
+      "is_simulation": true
+    }
+  ],
+  "alerts": [
+    {
+      "alert_id": "ALT-937FD8FD",
+      "timestamp": "2026-10-02T12:18:41.618286",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-WIN-001: Active Directory Discovery via Command Line",
+      "severity": "MEDIUM",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "anomaly_score": 0.35,
+      "contributing_features": {},
+      "description": "Detected internal discovery command matching signature pattern: 'nltest /dclist' executed by user01.",
+      "evidence_events": [
+        "c9aaac58-eb29-4ef8-acc5-d4a785e24dad"
+      ],
+      "response_triggered": "SIMULATED_IP_BLOCK"
+    },
+    {
+      "alert_id": "ALT-1BB376D6",
+      "timestamp": "2026-10-02T12:18:41.618286",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-WIN-006: PsExec/Lateral Movement Remote Service Installed",
+      "severity": "CRITICAL",
+      "host": "DC01",
+      "user": "svc_backup",
+      "anomaly_score": 0.8,
+      "contributing_features": {},
+      "description": "Remote execution service installed on DC01: 'PSEXESVC' by user 'svc_backup'.",
+      "evidence_events": [
+        "3672cf30-01c0-4466-a0fc-988d3e7336ad"
+      ],
+      "response_triggered": "SIMULATED_HOST_ISOLATION_AND_ACCOUNT_FLAG"
+    },
+    {
+      "alert_id": "ALT-0E878D06",
+      "timestamp": "2026-10-02T12:18:41.618286",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-LNX-004: Unauthorized or Unaudited Sudo Execution",
+      "severity": "HIGH",
+      "host": "SRV-LNX01",
+      "user": "webadmin",
+      "anomaly_score": 0.6,
+      "contributing_features": {},
+      "description": "Non-admin user 'webadmin' executed privileged command via sudo on SRV-LNX01: 'sudo /bin/cat /etc/shadow'.",
+      "evidence_events": [
+        "e8105794-4fab-4f91-94fc-74ac12d4c5a3"
+      ],
+      "response_triggered": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG"
+    }
+  ],
+  "anomaly_logs": [
+    {
+      "event_id": "674d3761-0384-4a9a-8d47-d7e9ab680b80",
+      "timestamp": "2026-10-01T10:01:00",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.158,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.85,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "c9aaac58-eb29-4ef8-acc5-d4a785e24dad",
+      "timestamp": "2026-10-01T10:02:10",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.158,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.85,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "57b7e185-1f31-4df1-9dcf-d422d2a3d73d",
+      "timestamp": "2026-10-01T10:02:30",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "score": 0.2555,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.05,
+        "dest_port_novelty": 0.05,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.85,
+        "admin_privilege_jump": 0.7
+      }
+    },
+    {
+      "event_id": "cf850616-dc42-40b8-95ba-fc9f7adc4e1a",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "user": "svc_backup",
+      "score": 0.3125,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.35,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "27c18e5c-1c6a-4f33-b11a-553c2c1a4bf0",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "user": "svc_backup",
+      "score": 0.3125,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.35,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "2192fa17-75d7-4054-abce-446dea9eec34",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "user": "svc_backup",
+      "score": 0.3725,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.75,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "67959a17-8cbf-4266-b233-472161934343",
+      "timestamp": "2026-10-01T10:04:00",
+      "host": "DC01",
+      "user": "svc_backup",
+      "score": 0.3725,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.75,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "a3fe62fd-9b06-4126-a394-ff3f749601a8",
+      "timestamp": "2026-10-01T10:04:20",
+      "host": "DC01",
+      "user": "svc_backup",
+      "score": 0.2943,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.5,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.20833333333333334,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "3672cf30-01c0-4466-a0fc-988d3e7336ad",
+      "timestamp": "2026-10-01T10:06:00",
+      "host": "DC01",
+      "user": "svc_backup",
+      "score": 0.293,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.8,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "2c543ce1-ccf1-4aec-9b17-2ee0d84be465",
+      "timestamp": "2026-10-01T10:08:00",
+      "host": "DC01",
+      "user": "svc_backup",
+      "score": 0.4205,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.95,
+        "dest_port_novelty": 0.8,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.9
+      }
+    },
+    {
+      "event_id": "27b1f78b-d55c-4dd6-8deb-205c21dc4d35",
+      "timestamp": "2026-10-01T10:09:10",
+      "host": "SRV-LNX01",
+      "user": "webadmin",
+      "score": 0.243,
+      "tier": "NORMAL",
+      "features": {
+        "dest_host_novelty": 0.7,
+        "dest_port_novelty": 0.8,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.05,
+        "admin_privilege_jump": 0.05
+      }
+    },
+    {
+      "event_id": "e8105794-4fab-4f91-94fc-74ac12d4c5a3",
+      "timestamp": "2026-10-01T10:09:40",
+      "host": "SRV-LNX01",
+      "user": "webadmin",
+      "score": 0.438,
+      "tier": "UNUSUAL",
+      "features": {
+        "dest_host_novelty": 0.7,
+        "dest_port_novelty": 0.8,
+        "off_hours_deviation": 0.05,
+        "auth_frequency": 0.0,
+        "failed_ratio": 0.02,
+        "rare_process": 0.5,
+        "admin_privilege_jump": 0.9
+      }
+    }
+  ],
+  "responses": [
+    {
+      "action_id": "RSP-70020292",
+      "timestamp": "2026-10-02T12:18:41.618286",
+      "alert_id": "ALT-937FD8FD",
+      "target_host": "WIN-LAB01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_IP_BLOCK",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] Added temporary firewall drop rule for internal scanning host 'WIN-LAB01'.",
+      "remediation_notes": "Internal reconnaissance containment rule applied."
+    },
+    {
+      "action_id": "RSP-DEC45113",
+      "timestamp": "2026-10-02T12:18:41.618286",
+      "alert_id": "ALT-1BB376D6",
+      "target_host": "DC01",
+      "target_user": "svc_backup",
+      "action_type": "SIMULATED_HOST_ISOLATION_AND_ACCOUNT_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] Host 'DC01' isolated on software-switch port; User 'svc_backup' flagged for session termination.",
+      "remediation_notes": "Requires Tier 2 Analyst triage before releasing network segment."
+    },
+    {
+      "action_id": "RSP-F3FE698A",
+      "timestamp": "2026-10-02T12:18:41.618286",
+      "alert_id": "ALT-0E878D06",
+      "target_host": "SRV-LNX01",
+      "target_user": "webadmin",
+      "action_type": "SIMULATED_ACCOUNT_INVESTIGATION_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] User 'webadmin' flagged for behavioral review; Generated SOC Ticket for host 'SRV-LNX01'.",
+      "remediation_notes": "Review authentication logs in SIEM; check for concurrent interactive sessions."
+    }
+  ]
+}

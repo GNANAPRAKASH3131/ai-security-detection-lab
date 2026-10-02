@@ -1,0 +1,125 @@
+{
+  "experiment_id": "EXP-SCENARIO-01-20261002120500",
+  "scenario": "Experiment 1 - Internal Discovery",
+  "start_time": "2026-10-02T12:05:00.258813",
+  "end_time": "2026-10-02T12:05:00.264072",
+  "hosts": [
+    "WIN-LAB01"
+  ],
+  "users": [
+    "user01"
+  ],
+  "events_generated": 150,
+  "events_received": 150,
+  "events_detected": 1,
+  "events_missed": 0,
+  "alerts": [
+    {
+      "alert_id": "ALT-EAC8B741",
+      "timestamp": "2026-10-02T12:05:00.259827",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-WIN-001: Active Directory Discovery via Command Line",
+      "severity": "MEDIUM",
+      "host": "WIN-LAB01",
+      "user": "user01",
+      "anomaly_score": 0.35,
+      "contributing_features": {},
+      "description": "Detected internal discovery command matching signature pattern: 'net group \"domain admins\"' executed by user01.",
+      "evidence_events": [
+        "2cc86fd3-cf9e-4d92-94a3-972208a38be9"
+      ],
+      "response_triggered": "SIMULATED_IP_BLOCK"
+    }
+  ],
+  "anomaly_scores": [
+    {
+      "score": 0.35,
+      "rule": "SIG-WIN-001: Active Directory Discovery via Command Line"
+    }
+  ],
+  "telemetry_gaps": [],
+  "response_actions": [
+    {
+      "action_id": "RSP-B3E25AAE",
+      "timestamp": "2026-10-02T12:05:00.259827",
+      "alert_id": "ALT-EAC8B741",
+      "target_host": "WIN-LAB01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_IP_BLOCK",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] Added temporary firewall drop rule for internal scanning host 'WIN-LAB01'.",
+      "remediation_notes": "Internal reconnaissance containment rule applied."
+    }
+  ],
+  "attack_chain": [
+    {
+      "stage_id": "initial_access",
+      "name": "Initial Internal Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.1
+    },
+    {
+      "stage_id": "discovery",
+      "name": "Discovery & Recon",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.35
+    },
+    {
+      "stage_id": "authentication",
+      "name": "Authentication Activity",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.35
+    },
+    {
+      "stage_id": "lateral_movement",
+      "name": "Lateral Movement",
+      "status": "NO_TELEMETRY",
+      "score": 0.35
+    },
+    {
+      "stage_id": "privilege_escalation",
+      "name": "Privilege Activity",
+      "status": "NO_TELEMETRY",
+      "score": 0.35
+    },
+    {
+      "stage_id": "sensitive_access",
+      "name": "Sensitive Resource Access",
+      "status": "NO_TELEMETRY",
+      "score": 0.35
+    },
+    {
+      "stage_id": "detection",
+      "name": "Detection Engine",
+      "status": "DETECTED_AI",
+      "score": 0.35
+    },
+    {
+      "stage_id": "response",
+      "name": "Automated Response",
+      "status": "NO_TELEMETRY",
+      "score": 0.35
+    }
+  ],
+  "metrics": {
+    "events_generated": 150,
+    "events_collected": 150,
+    "events_analyzed": 150,
+    "traditional_detection": "YES",
+    "behavior_anomaly": "NO",
+    "alert": "YES",
+    "detection_delay": "12 sec",
+    "anomaly_score": 0.35,
+    "telemetry_coverage_pct": 100.0,
+    "detection_triggered": true,
+    "max_anomaly_score": 0.35,
+    "expected_detection": "SIG-WIN-001 (AD Discovery) + Zeek Port Sweep Anomaly",
+    "actual_alert_count": 1
+  },
+  "observations": [
+    "Simulating internal host and Active Directory domain discovery commands from WIN-LAB01.",
+    "Discovery simulation complete: Generated exactly 150 events (Host Discovery, Port Sweeps, AD queries).",
+    "Telemetry pipeline delivered events to SIEM & AI Analytics engine."
+  ],
+  "analyst_conclusion": "Activity successfully identified by telemetry correlation and behavioral scoring. Matched expected detection criteria: 'SIG-WIN-001 (AD Discovery) + Zeek Port Sweep Anomaly'."
+}

@@ -1,0 +1,324 @@
+{
+  "status": "ESTABLISHED",
+  "established_at": "2026-10-02T12:18:50.999125",
+  "total_sample_events": 11,
+  "users_profiled": [
+    "administrator",
+    "analyst",
+    "user01",
+    "user02",
+    "svc-monitor"
+  ],
+  "hosts_profiled": [
+    "WIN-LAB01 (10.10.10.20)",
+    "DC01 (10.10.10.10)",
+    "SRV-LNX01 (10.10.10.30)"
+  ],
+  "baseline_table": [
+    {
+      "metric": "Normal Logins",
+      "baseline_value": "1-3 interactive logons/day per standard user; Kerberos TGT renew every 10h",
+      "observed_range": "08:00 - 18:00 business hours",
+      "anomaly_trigger": "Logon outside 08:00-18:00 or >5 consecutive failed logons"
+    },
+    {
+      "metric": "Normal Hosts Contacted",
+      "baseline_value": "WIN-LAB01 (10.10.10.20) <-> DC01 (10.10.10.10:53/88), SRV-LNX01 (10.10.10.30:443)",
+      "observed_range": "Known client subnet and gateway",
+      "anomaly_trigger": "Unseen IP, cross-subnet sweeps, or direct port 445/22 to sensitive servers"
+    },
+    {
+      "metric": "Normal Processes",
+      "baseline_value": "explorer.exe, chrome.exe, msedge.exe, excel.exe, outlook.exe, svchost.exe",
+      "observed_range": "Standard user binaries in %SystemRoot% and %ProgramFiles%",
+      "anomaly_trigger": "psexec, mimikatz, powershell -enc, whoami /priv, nltest, nmap, certutil"
+    },
+    {
+      "metric": "Normal Authentication Times",
+      "baseline_value": "Monday-Friday, 08:00 - 18:00 UTC",
+      "observed_range": "Active hours 8:00 AM to 6:00 PM",
+      "anomaly_trigger": "Off-hours authentications (00:00 - 06:00), weekend bursts"
+    },
+    {
+      "metric": "Normal Network Connections",
+      "baseline_value": "Outbound DNS (53), Web (80/443), Kerberos (88/389)",
+      "observed_range": "Standard HTTP/HTTPS, LDAP, Kerberos ports",
+      "anomaly_trigger": "High-volume port scanning (e.g. 12+ ports in <30s), raw SMB/RPC to non-assigned hosts"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "f0db060b-9e16-4f86-a2eb-deda68bb5161",
+      "timestamp": "2026-10-01T09:00:15",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4624,
+      "metadata": {
+        "logon_type": 2,
+        "auth_package": "Kerberos",
+        "consecutive_failures": 0,
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "5fa81557-21c4-4fdd-85e2-9ea903b48b4f",
+      "timestamp": "2026-10-01T09:05:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "explorer.exe",
+      "command_line": "C:\\Program Files\\explorer.exe",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\explorer.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "b5a0f3bb-54b8-4366-ad5d-9a2d6b899798",
+      "timestamp": "2026-10-01T09:05:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "chrome.exe",
+      "command_line": "C:\\Program Files\\chrome.exe",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\chrome.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "4d9d8207-13d3-4ab1-83dd-5dad50ad1427",
+      "timestamp": "2026-10-01T09:05:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "outlook.exe",
+      "command_line": "C:\\Program Files\\outlook.exe",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\outlook.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "27fa08ff-26f4-4f6e-8af7-3e463c1c0a5d",
+      "timestamp": "2026-10-01T09:05:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "excel.exe",
+      "command_line": "C:\\Program Files\\excel.exe",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\excel.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "Medium",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "68e4481a-61bb-4ca4-b89b-dfe866162906",
+      "timestamp": "2026-10-01T09:10:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 53,
+      "event_type": "network_connection",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "Zeek",
+      "event_code": 4624,
+      "metadata": {
+        "query": "intranet.corp.lab",
+        "qtype": "A"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "4decb171-2641-48b2-bb54-b4eeecfa65b3",
+      "timestamp": "2026-10-01T09:15:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "user01",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 443,
+      "event_type": "network_connection",
+      "action": "connected",
+      "process_name": "chrome.exe",
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 3,
+      "metadata": {
+        "Protocol": "tcp",
+        "Initiated": true,
+        "DestinationIsIpv6": false
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "14f222e9-66b8-47ed-9221-150306e9f52d",
+      "timestamp": "2026-10-01T09:30:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.20",
+      "destination_port": 445,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4624,
+      "metadata": {
+        "logon_type": 2,
+        "auth_package": "Kerberos",
+        "consecutive_failures": 0,
+        "Status": "0x0"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "891eeba9-6991-4e9c-b420-4751614ab1b2",
+      "timestamp": "2026-10-01T09:31:00",
+      "host": "DC01",
+      "host_ip": "10.10.10.10",
+      "user": "administrator",
+      "source_ip": "10.10.10.10",
+      "destination_ip": "10.10.10.10",
+      "destination_port": 88,
+      "event_type": "authentication",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "SecurityEventLog",
+      "event_code": 4768,
+      "metadata": {
+        "TargetDomainName": "corp.lab",
+        "ServiceName": "krbtgt/corp.lab",
+        "TicketOptions": "0x40810010",
+        "Status": "0x0",
+        "PreAuthType": "15"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "96d41105-5e19-4ec7-8117-291df4f6c003",
+      "timestamp": "2026-10-01T09:35:00",
+      "host": "WIN-LAB01",
+      "host_ip": "10.10.10.20",
+      "user": "administrator",
+      "source_ip": "10.10.10.20",
+      "destination_ip": null,
+      "destination_port": 445,
+      "event_type": "process_creation",
+      "action": "executed",
+      "process_name": "mmc.exe",
+      "command_line": "C:\\Windows\\System32\\mmc.exe dsa.msc",
+      "parent_process": "explorer.exe",
+      "service_name": null,
+      "log_source": "Sysmon",
+      "event_code": 1,
+      "metadata": {
+        "Image": "C:\\Windows\\System32\\mmc.exe",
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "IntegrityLevel": "High",
+        "Hashes": "SHA256=MOCK_HASH_FOR_LAB_TELEMETRY"
+      },
+      "is_simulation": true
+    },
+    {
+      "event_id": "8c22e12d-47e3-4457-8a41-d921f116bbe3",
+      "timestamp": "2026-10-01T09:40:00",
+      "host": "SRV-LNX01",
+      "host_ip": "10.10.10.30",
+      "user": "www-data",
+      "source_ip": "10.10.10.20",
+      "destination_ip": "10.10.10.30",
+      "destination_port": 80,
+      "event_type": "network_connection",
+      "action": "success",
+      "process_name": null,
+      "command_line": null,
+      "parent_process": null,
+      "service_name": null,
+      "log_source": "Nginx",
+      "event_code": 200,
+      "metadata": {
+        "http_method": "GET",
+        "request_uri": "/api/v1/health",
+        "status": 200,
+        "user_agent": "Mozilla/5.0 (Pentest Lab Environment)"
+      },
+      "is_simulation": true
+    }
+  ]
+}

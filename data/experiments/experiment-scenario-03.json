@@ -1,0 +1,127 @@
+{
+  "experiment_id": "EXP-SCENARIO-03-20261002120509",
+  "scenario": "Experiment 3 - Lateral Movement",
+  "start_time": "2026-10-02T12:05:09.375216",
+  "end_time": "2026-10-02T12:05:09.375216",
+  "hosts": [
+    "SRV-LNX01",
+    "WIN-LAB01",
+    "DC01"
+  ],
+  "users": [
+    "user01",
+    "analyst"
+  ],
+  "events_generated": 5,
+  "events_received": 5,
+  "events_detected": 1,
+  "events_missed": 0,
+  "alerts": [
+    {
+      "alert_id": "ALT-D1906143",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "detection_type": "TRADITIONAL_RULE",
+      "rule_name": "SIG-WIN-006: PsExec/Lateral Movement Remote Service Installed",
+      "severity": "CRITICAL",
+      "host": "DC01",
+      "user": "user01",
+      "anomaly_score": 0.8,
+      "contributing_features": {},
+      "description": "Remote execution service installed on DC01: 'PSEXESVC' by user 'user01'.",
+      "evidence_events": [
+        "84738957-5c7c-4275-b4ef-dcc2f7d1978e"
+      ],
+      "response_triggered": "SIMULATED_HOST_ISOLATION_AND_ACCOUNT_FLAG"
+    }
+  ],
+  "anomaly_scores": [
+    {
+      "score": 0.8,
+      "rule": "SIG-WIN-006: PsExec/Lateral Movement Remote Service Installed"
+    }
+  ],
+  "telemetry_gaps": [],
+  "response_actions": [
+    {
+      "action_id": "RSP-49014903",
+      "timestamp": "2026-10-02T12:05:09.375216",
+      "alert_id": "ALT-D1906143",
+      "target_host": "DC01",
+      "target_user": "user01",
+      "action_type": "SIMULATED_HOST_ISOLATION_AND_ACCOUNT_FLAG",
+      "status": "EXECUTED_SAFE_SIMULATION",
+      "details": "[SAFE LAB SIMULATION] Host 'DC01' isolated on software-switch port; User 'user01' flagged for session termination.",
+      "remediation_notes": "Requires Tier 2 Analyst triage before releasing network segment."
+    }
+  ],
+  "attack_chain": [
+    {
+      "stage_id": "initial_access",
+      "name": "Initial Internal Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.1
+    },
+    {
+      "stage_id": "discovery",
+      "name": "Discovery & Recon",
+      "status": "NO_TELEMETRY",
+      "score": 0.8
+    },
+    {
+      "stage_id": "authentication",
+      "name": "Authentication Activity",
+      "status": "DETECTED_AI",
+      "score": 0.8
+    },
+    {
+      "stage_id": "lateral_movement",
+      "name": "Lateral Movement",
+      "status": "DETECTED_AI",
+      "score": 0.8
+    },
+    {
+      "stage_id": "privilege_escalation",
+      "name": "Privilege Activity",
+      "status": "NO_TELEMETRY",
+      "score": 0.8
+    },
+    {
+      "stage_id": "sensitive_access",
+      "name": "Sensitive Resource Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.8
+    },
+    {
+      "stage_id": "detection",
+      "name": "Detection Engine",
+      "status": "DETECTED_AI",
+      "score": 0.8
+    },
+    {
+      "stage_id": "response",
+      "name": "Automated Response",
+      "status": "DETECTED_AI",
+      "score": 0.8
+    }
+  ],
+  "metrics": {
+    "events_generated": 5,
+    "events_collected": 5,
+    "events_analyzed": 5,
+    "traditional_detection": "YES",
+    "behavior_anomaly": "YES",
+    "alert": "YES",
+    "detection_delay": "3.2 sec",
+    "anomaly_score": 0.8,
+    "telemetry_coverage_pct": 100.0,
+    "detection_triggered": true,
+    "max_anomaly_score": 0.8,
+    "expected_detection": "SIG-WIN-006 (PsExec) + Destination Host Novelty + SSH Pivot",
+    "actual_alert_count": 1
+  },
+  "observations": [
+    "Simulating multi-stage lateral movement path: WIN-LAB01 -> DC01 -> SRV-LNX01.",
+    "Generated 5 events across 3 hosts along the lateral movement path."
+  ],
+  "analyst_conclusion": "Activity successfully identified by telemetry correlation and behavioral scoring. Matched expected detection criteria: 'SIG-WIN-006 (PsExec) + Destination Host Novelty + SSH Pivot'."
+}

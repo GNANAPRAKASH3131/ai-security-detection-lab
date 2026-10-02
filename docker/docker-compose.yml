@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  lab-dashboard:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dashboard
+    container_name: cyber-lab-dashboard
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../data:/app/data
+    restart: unless-stopped
+
+  lab-siem-analytics:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.siem
+    container_name: cyber-lab-siem
+    volumes:
+      - ../data:/app/data
+    restart: unless-stopped

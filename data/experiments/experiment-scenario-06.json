@@ -1,0 +1,92 @@
+{
+  "experiment_id": "EXP-SCENARIO-06-20261002121842",
+  "scenario": "Experiment 6 - False Positives (Anomalous != Malicious)",
+  "start_time": "2026-10-02T12:18:42.868029",
+  "end_time": "2026-10-02T12:18:42.868369",
+  "hosts": [
+    "DC01",
+    "WIN-LAB01"
+  ],
+  "users": [
+    "administrator"
+  ],
+  "events_generated": 7,
+  "events_received": 7,
+  "events_detected": 0,
+  "events_missed": 0,
+  "alerts": [],
+  "anomaly_scores": [],
+  "telemetry_gaps": [],
+  "response_actions": [],
+  "attack_chain": [
+    {
+      "stage_id": "initial_access",
+      "name": "Initial Internal Access",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.1
+    },
+    {
+      "stage_id": "discovery",
+      "name": "Discovery & Recon",
+      "status": "NO_TELEMETRY",
+      "score": 0.213
+    },
+    {
+      "stage_id": "authentication",
+      "name": "Authentication Activity",
+      "status": "TELEMETRY_RECEIVED",
+      "score": 0.213
+    },
+    {
+      "stage_id": "lateral_movement",
+      "name": "Lateral Movement",
+      "status": "NO_TELEMETRY",
+      "score": 0.213
+    },
+    {
+      "stage_id": "privilege_escalation",
+      "name": "Privilege Activity",
+      "status": "NO_TELEMETRY",
+      "score": 0.213
+    },
+    {
+      "stage_id": "sensitive_access",
+      "name": "Sensitive Resource Access",
+      "status": "NO_TELEMETRY",
+      "score": 0.213
+    },
+    {
+      "stage_id": "detection",
+      "name": "Detection Engine",
+      "status": "NO_TELEMETRY",
+      "score": 0.213
+    },
+    {
+      "stage_id": "response",
+      "name": "Automated Response",
+      "status": "NO_TELEMETRY",
+      "score": 0.213
+    }
+  ],
+  "metrics": {
+    "events_generated": 7,
+    "events_collected": 7,
+    "events_analyzed": 7,
+    "traditional_detection": "NO",
+    "behavior_anomaly": "NO",
+    "alert": "NO",
+    "detection_delay": "3.2 sec",
+    "anomaly_score": 0.21,
+    "telemetry_coverage_pct": 100.0,
+    "detection_triggered": false,
+    "max_anomaly_score": 0.213,
+    "expected_detection": "NO_ALERT / LOW_SCORE (Legitimate Multi-System Administrator Maintenance)",
+    "actual_alert_count": 0
+  },
+  "observations": [
+    "Simulating authorized administrator server maintenance window involving multiple authentications and multi-system access.",
+    "Generated 7 authorized administrative maintenance events across 3 systems.",
+    "Research observation: While volume of systems accessed increased, user role ('administrator') baseline correctly suppressed false positive alerts."
+  ],
+  "analyst_conclusion": "Activity produced minimal baseline deviation; event volume and behavioral feature novelty remained within normal operating bounds (0 false alarms generated)."
+}
